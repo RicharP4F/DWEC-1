@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplos salida</title>
+    <script type="text/javascript">
+      // Alert: permite sacar información por pantalla:
+      alert('Esto es un ejemplo de alerta');
+    </script>
+    <script src="mensaje.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <h1>Esto es un título</h1>
+    <p onclick="alert('Hola estoy \' mal ubicado \'')">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <script type="text/javascript">
+      //Console.log: permite sacar información por consola
+      console.log("Este mensaje que no lo vea nadie");
+
+      //Podemos utilizar una variable definida en otro script porque
+      //ha sido incluida en el html. La variable texto se ha definido en mensaje.js
+      alert(texto);
+
+      //document.write incluye el contenido que le pasemos en el body de la página.
+      //Si la página está cargada ya, sobreescribe su contenido. Por ejemplo si hago onclick la página ha sido cargada.
+      document.write("Tengo algo que añadir!");
+      //Podemos incluir elementos html dentro de document.write que se incluirán en body.
+      //Por eso si quiero hacer un salto de página aquí, debo usar <br>, no \n
+      document.write("<h1>Hola!</h1>");
+      //Observa la diferencia entre usar html en alert y en document.write
+      alert("<h1>Hola!</h1>");
+      console.log("<h1>Hola!</h1>");
+    </script>
+  </body>
+</html>
