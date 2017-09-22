@@ -3,11 +3,11 @@
 //Sin activar use strict no hay problemas si no declaramos variables:
 // var x = 2;
 // var y = 3;
-// z = x + y;
-// console.log(z);
+// t = x + y;
+// console.log(t);
 
-// //Cuando activamos use strict debemos declarar variables o da error:
-// "use strict"
+//Cuando activamos use strict debemos declarar variables o da error:
+// "use strict";
 // var x = 2;
 // var y = 3;
 // z = x + y;
@@ -15,18 +15,18 @@
 
 
 
-// //***** Diferencia entre null, undefined y no declarar la variable
-// //null: x se ha declarado pero no tiene valor. Sí tiene tipo porque se
-// //le ha dado el valor de null
-// var x = null;
-//
-// //undefined: se ha declarado una variable pero no tiene tipo. Se le asigna automáticamente el tipo undefined
-// var k;
-// console.log(k);
-//
-// //no declarar variable. No tiene espacio, no tiene tipo, no existe.
-// console.log(s);
-//
+//***** Diferencia entre null, undefined y no declarar la variable
+//null: x se ha declarado pero no tiene valor. Sí tiene tipo porque se
+//le ha dado el valor de null
+var x = null;
+
+//undefined: se ha declarado una variable pero no tiene tipo. Se le asigna automáticamente el tipo undefined
+var k;
+console.log(k);
+
+//no declarar variable. No tiene espacio, no tiene tipo, no existe.
+console.log(s);
+// 
 // //cadena vacía. Se ha declarado, se le ha asignado el tipo string pero se ha dejado la cadena vacía
 // var s = "";
 // console.log(s);
