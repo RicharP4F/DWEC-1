@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U3. Ejemplo objeto creado con literales</title>
+    <script type="text/javascript">
+    // Manera alternativa de crear un objeto con literales
+        var facebook = {
+          nombre: "Facebook",
+          ceo: {
+            nombre: "Mark",
+            favColor: "azul"
+          }
+        };
+        var texto = "El color favorito de " + facebook.ceo.nombre
+        + " es: " + facebook.ceo.favColor;
+        console.log(texto);
+
+        //¿Puedo crear objetos a partir de literales?
+        // var persona = {
+        //   nombre: "Pepe",
+        //   saluda: function(){
+        //     alert("Hola, me llamo " + this.nombre);
+        //   }
+        // }
+        //console.log(persona);
+        //var Maria = new persona("Maria");
+        //Maria.saluda();
+
+        //Sólo puedo crear objetos si existe un constructor:
+        // function Persona (nombre){
+        //   this.nombre = nombre;
+        //   this.saluda = function(){
+        //     alert("Hola, me llamo " + this.nombre);
+        //   }
+        // }
+        // var Maria = new Persona("Maria");
+        // Maria.saluda();
+
+    </script>
+  </head>
+  <body>
+    <h1>Ejemplo crear objeto con literales</h1>
+  </body>
+</html>
