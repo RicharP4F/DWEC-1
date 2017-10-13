@@ -1,12 +1,12 @@
 
-// //Podemos recorrer el objeto atributo a atributo:
-// console.log(empresa);
-// console.log("El nombre de la empresa es: " + empresa.nombre);
-// console.log("El nombre de la empresa es: " + empresa["nombre"]);
-// console.log("El nombre del creador de la empresa es: "
-//   + empresa.ceo.nombre);
-// console.log("El color favorito de " + empresa.ceo.nombre +
-// " es "+ empresa.ceo.favColor);
+//Podemos recorrer el objeto atributo a atributo:
+console.log(empresa);
+console.log("El nombre de la empresa es: " + empresa.nombre);
+console.log("El nombre de la empresa es: " + empresa["nombre"]);
+console.log("El nombre del creador de la empresa es: "
+  + empresa.ceo.nombre);
+console.log("El color favorito de " + empresa.ceo.nombre +
+" es "+ empresa.ceo.favColor);
 
 //Podemos recorrer el objeto con for in:
 for (var campo in empresa) {

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U2. Ejemplo herencia</title>
+    <script type="text/javascript" charset="utf-8">
+      function Vehiculo(ruedas, medio){
+        this.ruedas = ruedas;
+        this.medio = medio;
+      }
+
+      var moto = new Vehiculo(2,"tierra");
+      moto.motor = "gasolina";
+
+      function Moto(ruedas, medio, motor){
+        Vehiculo.call(this, ruedas, medio);
+        this.motor = "gasolina";
+        this.arrancar = function(){
+          console.log("rumm, rumm!!!");
+        }
+      }
+
+      var moto2 = new Moto(2,"tierra","diesel");
+      for (var campo in moto2) {
+        console.log(campo + " : " + moto2[campo]);
+      }
+
+      
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
