@@ -14,19 +14,18 @@
 
       function Moto(ruedas, medio, motor){
         Vehiculo.call(this, ruedas, medio);
-        this.motor = motor;
+        this.motor = "gasolina";
         this.arrancar = function(){
           console.log("rumm, rumm!!!");
         }
       }
 
       var moto2 = new Moto(2,"tierra","diesel");
-
-      for (var n in moto2) {
-        console.log(campo + " : " + moto2[n]);
+      for (var campo in moto2) {
+        console.log(campo + " : " + moto2[campo]);
       }
 
-
+      
     </script>
   </head>
   <body>

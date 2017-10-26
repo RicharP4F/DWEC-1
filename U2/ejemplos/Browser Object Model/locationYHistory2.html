@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo Location y History</title>
+  </head>
+  <body>
+    <h1>Esta es la segunda página de mi web</h1>
+    <p><button onclick="navegaAtras()">Vuelve hacia la página origen</button></p>
+    <script type="text/javascript">
+      function navegaAtras(){
+        history.back();
+        //es lo mismo que history.go(-1);
+      }
+      console.log("La longitud del history es: " + history.length);
+    </script>
+  </body>
+</html>

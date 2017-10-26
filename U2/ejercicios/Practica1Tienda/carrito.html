@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tienda Juanito</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <style media="screen">
+      div#cuerpo{
+        width: 70%
+        border: 1px solid steelblue;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 onclick="inicio()">Tienda online</h1>
+      <h2>Carrito</h2>
+      <nav>
+        <ul>
+          <li><button onclick="eliminar()">Eliminar articulo</button></li>
+          <li><button onclick="hacerPedido()">Hacer pedido</button></li>
+          <li><button onclick="imprimir()">Imprimir pedido</button></li>
+          <li><button onclick="condCompraOnline()">Condiciones compra online</button></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="cuerpo">
+      <!--Aquí va el contenido-->
+    </div>
+    <script src="productos.js" charset="utf-8"></script>
+    <script src="surtido.class.js" charset="utf-8"></script>
+    <script src="usuario.class.js" charset="utf-8"></script>
+    <script src="scriptCarrito.js" charset="utf-8"></script>
+  </body>
+</html>

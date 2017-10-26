@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type"
+		 content="text/html;charset=utf-8">
+	<title>Funciones de objetos</title>
+	<script type="text/javascript">
+		function imprimeDatos(){ 
+   			document.write("Marca: " + this.marca);
+   			document.write("<br>Modelo: " + this.modelo);
+   			document.write("<br>A&ntilde;o: " + this.anyo);
+		}
+
+		function Coche(nombre_in, modelo_in, anyo_in){ 
+   			this.marca = nombre_in;
+   			this.modelo = modelo_in;
+			this.anyo = anyo_in;
+   			this.imprimeDatos = imprimeDatos; 
+		}
+	</script>
+</head>
+<body>
+	<script type="text/javascript">
+		var mi_coche = new Coche("Seat","Toledo", "1999");
+		mi_coche.imprimeDatos();
+	</script>
+</body>
+</html>
+
