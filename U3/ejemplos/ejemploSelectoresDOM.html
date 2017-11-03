@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U3 DOM. Ejemplo 2</title>
+    <style media="screen">
+      .ocultar{
+        display:none;
+      }
+      .mostrar{
+        display:block;
+      }
+    </style>
+    <script type="text/javascript">
+      onload = function(){
+        //Seleccionamos todos los elementos de tipo p:
+        var elemP = document.getElementsByTagName("p");
+
+        //Seleccionamos todos los elementos por su name:
+        var elemName = document.getElementsByName("texto");
+        console.log("El contenido del input es " + elemName[0].value);
+
+        //Seleccionamos usando querySelector:
+        var elemTodosP = document.querySelectorAll("p"); //todos los p's
+        var elem1P = document.querySelector("p"); //el primer p
+
+        //Podemos cambiar cualquier atributo con setAttribute
+        elemName[0].setAttribute("required","required");
+
+        //Podemos usar selectores de CSS de tipo pseudoclase:
+        document.querySelector(":required");
+
+        //Seleccionamos el elemento por su id:
+        var elemId = document.getElementById("tipoComunicacion");
+        console.log("El elemento seleccionado es " + elemId.value);
+
+        //Seleccionamos por clase:
+        var elemClass = document.getElementsByClassName("ocultar");
+        console.log("La clase del elemento p es " + elemClass[0].getAttribute("class"));
+        //elemClass[0].setAttribute("class","mostrar");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Formulario de atención al cliente</h1>
+    <p>Introduce el mensaje que quieras comunicarnos:</p>
+    <input type="text" name="texto" value="bla bla..."></input>
+    <select id="tipoComunicacion">
+      <option value=0>Escoge una opción</option>
+      <option value="queja">queja</option>
+      <option value="sugerencia">sugerencia</option>
+      <option value="felicitacion">felicitación</option>
+    </select>
+    <br>
+    <br>
+    <button>Enviar</button>
+    <br>
+    <p class="ocultar">Esto es un párrafo</p>
+  </body>
+</html>

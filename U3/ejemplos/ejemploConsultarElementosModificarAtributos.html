@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U3 DOM. Ejemplo 1</title>
+  </head>
+  <body>
+    <h1>Esto es el titular</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <img src="http://7400noticias.com.ar/wp-content/uploads/2016/09/arbol..jpg" alt="árbol">
+    <br>
+    <a href="https://www.google.es/">Esto es un enlace a Google</a>
+    <script type="text/javascript">
+      //El title de la web es:
+      console.log("El título de la web document.title es " + document.title);
+
+      //Las imágenes de la web son:
+      console.log("Las imágenes de la web están en document.images" + document.images);
+      console.log("La primera imagen es " + document.images[0]);
+      console.log("El alt es " + document.images[0].alt);
+      console.log("El src es " + document.images[0].src);
+
+      //Podemos cambiar algunos atributos:
+      document.images[0].alt = 'cambiado';
+      console.log("Cambiamos el atributo alt de la imagen con document.images[0].alt = 'cambiado' " + document.images[0].alt);
+      var titularH1 = document.body.children[0];
+      titularH1.id = "importante";
+      console.log("El id de h1 es " + titularH1.id);
+
+      //Los hijos de body :
+      var hijosElemento = document.body.children;
+      console.log("¿Los hijos elemento de body son un Array? " + hijosElemento instanceof Array);
+      // //console.log(hijosElemento.forEach(function(elem){console.log(elem)}););
+      // for (var i = 0; i < hijosElemento.length; i++) {
+      //   console.log("Elemento "  + i  + ": " + hijosElemento[i].innerHTML);
+      // }
+      var hijos = document.body.childNodes;
+      console.log("Todos los hijos de body son " + hijos.length);
+
+      // //Podemos cambiar el estilo de los elementos
+      // titularH1.style.color = "green";
+      // titularH1.style.fontStyle = "cursive";
+      // titularH1.style.border = "2px solid gold";
+      // titularH1.style.textAlign = "center";
+    </script>
+  </body>
+</html>

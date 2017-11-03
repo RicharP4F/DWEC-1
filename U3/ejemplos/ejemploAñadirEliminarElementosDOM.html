@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U3 DOM. Ejemplo 3</title>
+    <script type="text/javascript">
+      onload = function(){
+        //Creo un título
+        var miH = document.createElement("h1");
+
+        //Creo un texto
+        var texto = document.createTextNode("Esto es un titular");
+
+        //El texto es hijo del h1
+        miH.appendChild(texto);
+
+        //Puedo cambiar atributos, estilos de h1
+        miH.style.color = "red";
+
+        // //¿De dónde cuelga miH?
+        // console.log(miH.parentNode);
+        //
+        // //El h1 es hijo de body
+        // document.body.appendChild(miH);
+
+        // //Borramos el h1
+        // document.body.removeChild(miH);
+        // // También vale: miH.parentNode.removeChild(miH);
+      }
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
