@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Crea elementos del DOM</title>
+    <script type="text/javascript">
+      onload = function creaDOM(){
+        /*Creo el titular*/
+        var mih1 = document.createElement("h1"); //creamos el elemento h1
+        var mitexto = document.createTextNode("Qué bonito es el DOM"); //creamos el texto
+        mih1.appendChild(mitexto); //el texto pasa a ser hijo de h1
+        document.body.appendChild(mih1); //h1 pasa a ser hijo de body
+        mih1.style.color = "blue"; //cambiamos el color de la letra
+        mih1.style.fontFamily = "Arial"; //cambiamos el tipo de letra
+
+        /*Creo la imagen*/
+        var imagen = document.createElement('img');
+        imagen.setAttribute('src','imagen1.png');
+        imagen.setAttribute('alt','árbol');
+        document.body.appendChild(imagen);
+
+        /*Cambiamos el estilo del elemento*/
+        imagen.style.width="50px";
+        imagen.style.height="50px";
+
+        /*//Otro posible selector podría ser:
+        document.images[0].style.width="50px";
+        document.images[0].style.height="50px";*/
+        
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

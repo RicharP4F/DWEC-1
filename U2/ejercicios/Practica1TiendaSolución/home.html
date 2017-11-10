@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tienda Juanito</title>
+    <link rel="stylesheet" href="css/estilo.css">
+  </head>
+  <body>
+    <header>
+      <h1 onclick="recarga()">Tienda online</h1>
+      <h2>Inicio</h2>
+      <nav>
+        <ul>
+          <li><button onclick="verPorPrecioMas(p)">Más barato primero</button></li>
+          <li><button onclick="verPorPrecioMenos(p)">Más caro primero</button></li>
+          <!-- <li><button onclick="verPorUbicacion()">Tienda proximidad</button></li> -->
+          <li><button onclick="verVegano()">Vegano</button></li>
+          <li><button onclick="recarga()">Ver Todo</button></li>
+          <li><button onclick="navegarCarrito()">Mi compra</button></li>
+          <li><button onclick="condCompraOnline()">Condiciones compra online</button></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="cuerpo">
+      <!--Aquí va el contenido-->
+    </div>
+    <script src="productos.js" charset="utf-8"></script>
+    <script src="surtido.class.js" charset="utf-8"></script>
+    <script src="scriptHome.js" charset="utf-8"></script>
+  </body>
+</html>

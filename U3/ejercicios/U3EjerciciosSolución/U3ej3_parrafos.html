@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo completo párrafos</title>
+    <script type="text/javascript">
+      onload = function(){
+        var vectorP = document.getElementsByTagName('p');
+
+        for (var i=0; i<vectorP.length; i++){
+          vectorP[i].innerHTML = "Este párrafo es el número " + Number(i+1);
+        }
+      }
+      function recorreTag(){
+        var vectorP = document.getElementsByTagName('p');
+        //También puedo usar: var colorEscogido = document.getElementById('txtColor').value;
+        var colorEscogido = document.getElementsByTagName('input')[0].value;
+        for (var i=0; i<vectorP.length; i++){
+          vectorP[i].style.color = colorEscogido;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="contiene_ps">
+      <p>?</p>
+      <p>?</p>
+      <p>?</p>
+      <p>?</p>
+      <p>?</p>
+      <p>?</p>
+      <div id="cambiame">
+        <!--El valor por defecto es rojo: #FF0000-->
+        <input type="color" id="txtColor" value="#FF0000">
+        <button id="actualizar" onclick="recorreTag();">Modificar los párrafos!</button>
+      </div>
+    </div>
+  </body>
+</html>
