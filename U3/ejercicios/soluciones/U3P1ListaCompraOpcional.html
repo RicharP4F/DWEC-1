@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U3 Práctica1: Lista compra</title>
+    <script type="text/javascript">
+      function anadirElemento(){
+        var item = document.getElementsByTagName("input")[0].value;
+        var colorCat = document.getElementsByTagName("select")[0].value;
+        if ((item != "") && (colorCat != 0)){
+          if (document.getElementById(colorCat) != null){
+            //Si estoy aquí, existe un div con id=colorCat que puedo usar como contenedor
+            var miDiv = document.getElementById(colorCat); //selecciono el id correspondiente
+            console.log("Existe " + miDiv);
+          }else{
+            //Si estoy aquí es el primer p de la categoría por lo que tengo que crear el miDiv
+            var miDiv = document.createElement("div");
+            miDiv.style.border = "2px solid " + colorCat;
+            miDiv.style.borderRadius = "5px";
+            miDiv.style.margin = "10px";
+            miDiv.style.padding = "5px";
+            miDiv.id = colorCat;
+            document.body.appendChild(miDiv);
+            console.log(miDiv);
+          }
+          /* Una vez creado o seleccionado miDiv, creo el contenido de los p's */
+          var miP = document.createElement("p"); //creo el p
+          var texto = document.createTextNode(item); //creo el texto
+          miP.appendChild(texto);
+          miP.style.color = colorCat;
+          miP.setAttribute("onclick","eliminarElemento()"); //asigno el atributo
+          miDiv.appendChild(miP);
+        }
+      }
+
+      function eliminarElemento(){
+        var pHover = document.querySelector("p:hover");
+        var padreP = pHover.parentNode; //selecciono el div padre del p
+        pHover.parentNode.removeChild(pHover);
+        if (padreP.children.length == 0){ //si después de matar a p, ya no tiene hijos, tendré que matar también al padre
+          padreP.parentNode.removeChild(padreP);
+        }
+      }
+
+      function borrarLista(){
+        var arrayDiv = document.getElementsByTagName("div");
+        var nDiv = arrayDiv.length; //tengo que almacenar la longitud porque cambia en cada iteración
+        for (var i = 0; i < nDiv; i++) {
+          arrayDiv[0].parentNode.removeChild(arrayDiv[0]); //elimino siempre el elemento 0
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Lista de la compra</h1>
+    <input type="text"></input>
+    <select>
+      <option value="0">Escoge una categoria</option>
+      <option value="red">Carnicería</option>
+      <option value="blue">Pescadería</option>
+      <option value="green">Verdulería</option>
+      <option value="cyan">Congelados</option>
+      <option value="gold">Panadería</option>
+      <option value="magenta">Perfumería</option>
+      <option value="gray">Otros</option>
+    </select>
+    <button onclick="anadirElemento()">Añadir Elemento</button>
+    <button onclick="borrarLista()">Borrar Lista</button>
+    <hr>
+  </body>
+</html>

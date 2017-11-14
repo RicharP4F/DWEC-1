@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U3 Práctica1: Lista compra</title>
+    <script type="text/javascript">
+      function anadirElemento(){
+        var item = document.getElementsByTagName("input")[0].value;
+        var colorCat = document.getElementsByTagName("select")[0].value;
+        if ((item != "") && (colorCat != 0)){
+          var miP = document.createElement("p");
+          var texto = document.createTextNode(item);
+          miP.appendChild(texto);
+          miP.style.color = colorCat;
+          miP.setAttribute("onclick","eliminarElemento()");
+          document.body.appendChild(miP);
+        }
+      }
+      function eliminarElemento(){
+        var pHover = document.querySelector("p:hover");
+        pHover.parentNode.removeChild(pHover);
+      }
+      function borrarLista(){
+        // var arrayP = document.getElementsByTagName("p");
+        // var nP = arrayP.length;
+        // for (var i = 0; i < nP; i++) {
+        //   arrayP[0].parentNode.removeChild(arrayP[0]);
+        // }
+        var arrayP = document.querySelectorAll("p");
+        for (var i = 0; i < arrayP.length; i++) {
+          arrayP[i].parentNode.removeChild(arrayP[i]);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Lista de la compra</h1>
+    <input type="text"></input>
+    <select>
+      <option value="0">Escoge una categoria</option>
+      <option value="red">Carnicería</option>
+      <option value="blue">Pescadería</option>
+      <option value="green">Verdulería</option>
+      <option value="cyan">Congelados</option>
+      <option value="gold">Panadería</option>
+      <option value="magenta">Perfumería</option>
+      <option value="gray">Otros</option>
+    </select>
+    <button onclick="anadirElemento()">Añadir Elemento</button>
+    <button onclick="borrarLista()">Borrar Lista</button>
+    <hr>
+  </body>
+</html>

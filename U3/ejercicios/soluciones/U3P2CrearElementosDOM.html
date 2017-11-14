@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style media="screen">
+	.columna{
+		display:inline-block;
+		width: 180px;
+		height: 20px;
+		border-radius: 8px;
+		border: 2px solid navy;
+		text-align: center;
+	}
+</style>
+<script charset="utf-8">
+
+var StarWarsFilms=[
+	{titulo: "Episodi IV", nombre:"Una Nueva Esperanza", any: 1977 ,director: "George Lucas"},
+	{titulo: "Episodi V", nombre:"El Imperio Contraataca", any:1980, director: "George Lucas"},
+	{titulo: "Episodi VI", nombre:"El Retorno del Jedi", any:1984, director: "George Lucas"},
+	{titulo: "Episodi I", nombre:"La Amenaza Fantasma", any:1999, director: "George Lucas"},
+	{titulo: "Episodi II", nombre:"El ataque de los clones", any:2002, director: "George Lucas"},
+	{titulo: "Episodi III", nombre:"La Venganza de los Sith", any:2005, director: "George Lucas"},
+	{titulo: "Episodi VII", nombre:"El Despertar de la Fuerza", any:2015, director: "J.J. Abrams"}
+     ];
+
+onload = function cargaInfo(){
+
+	/*Aquí tengo que crear los nodos del DOM*/
+	var divTabla = document.createElement("div");
+	document.body.appendChild(divTabla); //La tabla es hija de body (la tabla y sus hijos aparecerán dibujados a partir de ahora)
+
+	var divFila, divCelda, txt;
+
+	/*Creo la fila de la cabecera de la tabla*/
+	divFila = document.createElement("div"); //Creamos el divFila
+	console.log(StarWarsFilms[0]);
+	for (var campo in StarWarsFilms[0]){
+		console.log(campo);
+		divCelda = document.createElement("div"); //Creamos el div celda
+		txt = document.createTextNode(campo); /*Creamos el texto: en lugar de coger el valor del campo, cogemos el campo como contenido de la celda*/
+		divCelda.appendChild(txt); //El texto es hijo de celda
+		divCelda.setAttribute("class","columna"); //Asignamos la clase columna a la celda
+		divCelda.style.fontWeight = "bold"; //Cambiamos el formato de la celda
+		divFila.appendChild(divCelda); //La celda es hija de la fila
+	}
+	divTabla.appendChild(divFila);//La fila es hija de la tabla
+
+	/*Recorro el array de objetos:*/
+	StarWarsFilms.forEach(function(objectoPeli){
+		divFila = document.createElement("div");
+	  /*Recorro los campos del objeto*/
+	  for (campo in objectoPeli){
+			divCelda = document.createElement("div");
+			txt = document.createTextNode(objectoPeli[campo]);
+			divCelda.appendChild(txt);
+			divCelda.setAttribute("class","columna");
+			divFila.appendChild(divCelda);
+	  }
+		divTabla.appendChild(divFila);
+	});
+
+	var StarWarsCarteles = [
+		{imagen:"https://images-na.ssl-images-amazon.com/images/M/MV5BYTUwNTdiMzMtNThmNS00ODUzLThlMDMtMTM5Y2JkNWJjOGQ2XkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_SY1000_CR0,0,664,1000_AL_.jpg", imdb:"http://www.imdb.com/title/tt0076759/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=2969409082&pf_rd_r=1FDQ72D0AFGJ5YHPTY35&pf_rd_s=center-4&pf_rd_t=60601&pf_rd_i=star-wars&ref_=fea_sw_sw_swc_lk1"},
+		{imagen:"https://images-na.ssl-images-amazon.com/images/M/MV5BYmViY2M2MTYtY2MzOS00YjQ1LWIzYmEtOTBiNjhlMGM0NjZjXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SY1000_CR0,0,644,1000_AL_.jpg", imdb:"http://www.imdb.com/title/tt0080684/?ref_=nv_sr_4"},
+		{imagen:"https://images-na.ssl-images-amazon.com/images/M/MV5BODllZjg2YjUtNWEzNy00ZGY2LTgyZmQtYTkxNDYyOWM3OTUyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,637,1000_AL_.jpg", imdb:"http://www.imdb.com/title/tt0086190/?ref_=nv_sr_2"},
+		{imagen:"https://images-na.ssl-images-amazon.com/images/M/MV5BM2FmZGIwMzAtZTBkMS00M2JiLTk2MDctM2FlNTQ2OWYwZDZkXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SY1000_CR0,0,666,1000_AL_.jpg", imdb:"http://www.imdb.com/title/tt0120915/?ref_=nv_sr_2"},
+		{imagen:"https://images-na.ssl-images-amazon.com/images/M/MV5BOWNkZmVjODAtNTFlYy00NTQwLWJhY2UtMmFmZTkyOWJmZjZiL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SY1000_CR0,0,752,1000_AL_.jpg", imdb:"http://www.imdb.com/title/tt0121765/?ref_=nv_sr_2"},
+		{imagen:"https://images-na.ssl-images-amazon.com/images/M/MV5BNTc4MTc3NTQ5OF5BMl5BanBnXkFtZTcwOTg0NjI4NA@@._V1_SY1000_SX750_AL_.jpg", imdb:"http://www.imdb.com/title/tt0121766/?ref_=nv_sr_1"},
+		{imagen:"https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg", imdb:"http://www.imdb.com/title/tt2488496/?ref_=nv_sr_5"}
+	];
+
+	var enlace, imagen;
+	StarWarsCarteles.forEach(function(objetoCartel){
+			enlace = document.createElement("a"); //creamos el enlace
+			enlace.href = objetoCartel.imdb; //asignamos a lo que apunta el enlace
+			imagen = document.createElement("img"); //creamos la imagen
+			imagen.src = objetoCartel.imagen; //asignamos a lo que apunta la imagen
+
+			/*Formatemos la imagen*/
+			imagen.style.width = "100px";
+			imagen.style.height = "140px";
+			imagen.style.margin = "5px";
+			imagen.style.float = "left";
+
+			enlace.appendChild(imagen); //la imagen está dentro de los enlaces
+			document.body.appendChild(enlace); //los enlaces son hijos de body para que los dibuje el navegador
+	});
+
+} //Cierro cargaInfo
+
+</script>
+</head>
+<body>
+</body>
+</html>
