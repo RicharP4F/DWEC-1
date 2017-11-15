@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U3 Práctica 3 Objeto Comida</title>
+    <style media="screen">
+      input + input{
+        margin-left: 15px;
+      }
+    </style>
+    <script type="text/javascript">
+    //Creamos la función imprimeDatos
+      function imprimeDatos(){
+        document.write("<br><br>Código: " + this.codigo);
+        document.write("<br>Nombre: " + this.nombre);
+        document.write("<br>Precio: " + this.precio);
+      }
+
+    //Creamos el constructor y le asociamos la función imprimeDatos
+      function Productos(codigo, nombre, ingredientes){
+        this.codigo = codigo;
+        this.nombre = nombre;
+        var precio = (Math.random()*2 + 1);
+        this.precio = precio.toFixed(2);
+        this.ingredientes = ingredientes.sort();
+        this.imprimeDatos = imprimeDatos;
+      }
+
+      //Cambiamos el constructor para añadirle el método verIngredientes
+      Productos.prototype.verIngredientes = function(){
+        var ventana = window.open("","","width=300,height=300");
+        ventana.document.write("<br>Ingredientes: ");
+        for (var i = 0; i < this.ingredientes.length; i++) {
+           ventana.document.write("<br>" + this.ingredientes[i]);
+        }
+        ventana.document.write("<br><br><button onclick='window.close()'>Cerrar</button>");
+      }
+
+      //Cambiamos el constructor para añadirle el método borraIngredientes
+      Productos.prototype.borraIngredientes = function(){
+        if (this.ingredientes.length > 1){
+            this.ingredientes.pop();
+        }else{
+          alert("No es posible eliminar un ingrediente de " + this.nombre + " porque sólo hay 1")
+        }
+      }
+
+      //Cambiamos el constructor para añadirle el método buscaInfo
+      Productos.prototype.buscaInfo = function(){
+          var url = 'https://www.google.es/search?q=' + this.nombre;
+      		window.open(url,"","width=500,height=500");
+      }
+
+      //Este código se ejecuta siempre cuando se carga la web
+		    var producto1 = new Productos("1","Pan",["agua", "harina", "levadura","sal"]);
+		    var producto2 = new Productos("2","Café",["café arábiga", "café puaj"]);
+		    var producto3 = new Productos("3","Pizza",["tomate","harina","agua","jamón","mozarrella","aceite","sal"]);
+
+		    var productos = new Array(producto1, producto2, producto3);
+		    for(i=0; i<productos.length; i++){
+			       productos[i].imprimeDatos();
+             document.write("<br><input type='button' name='botonBorrar' value='Ver ingredientes' onclick='productos[" + i + "].verIngredientes()'>");
+             document.write("<input type='button' name='botonBorrar' value='Eliminar ingrediente' onclick='productos[" + i + "].borraIngredientes()'>");
+             document.write("<input type='button' name='botonInfo' value='Más información' onclick='productos[" + i + "].buscaInfo()'>");
+		    }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
