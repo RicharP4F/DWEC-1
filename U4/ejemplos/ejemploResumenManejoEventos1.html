@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Manejo eventos</title>
+    <script type="text/javascript">
+      /*Forma 1 manejo de eventos:
+      Incluimos dentro del elemento p el código*/
+
+      /*Forma 2 manejo de eventos:
+      Incluimos dentro del elemento p la función.
+      - a) Con event puedo pasar el objeto eventos
+      - b) Con this puedo pasar quién provocó el evento
+      */
+      function forma2a(e){
+        //Para modificar un elemento del HTML uso el DOM
+        //Para usar el DOM, debe estar cargado.
+        e.target.style.fontStyle = 'italic';
+        parrafo.style.fontFamily = 'Arial';
+      }
+      function forma2b(t){
+        /*Si me pasan this cuando ocurre el evento,
+        this es quien lo provocó*/
+        t.style.color = 'green';
+        /*Si cojo this aquí dentro,
+        aquí this es Window:*/
+        console.log('¿Quién es ' + this + ' ?');
+      }
+
+      /*Forma 3 manejo de eventos:
+      Asociamos el manejador a un elemento concreto empleando el DOM
+      El DOM debe estar cargado. Para asegurarme de eso,
+      incluyo todo dentro del evento onload
+      */
+      onload = function(){
+        otroParrafo.onwheel = function(e){
+          //Uso el DOM para referirme al elemento
+          otroParrafo.style.backgroundColor = 'yellow';
+          //Puedo usar el objeto event
+          e.target.style.fontFamily = 'Verdana';
+          //Aquí this es quien provocó el evento
+          this.style.fontWeight = 'bold';
+        }
+
+      /*
+      Forma 4 manejo de eventos:
+      Asignamos una función al manejador
+      pero no lo asociamos a un elemento concreto
+      - a) Podemos poner nombre a la función y luego asignarla
+      - b) Podemos asignarla sin nombre
+      */
+        function forma4a(e){
+          e.target.style.color = 'orange';
+          //Aquí this es Window
+          console.log("This si pulsamos doble click " + this);
+        }
+        ondblclick = forma4a;
+
+        //Forma 4b:
+        oncontextmenu = function(e){
+          e.target.style.border = '1px solid black';
+
+          //Aquí this es window
+          console.log("This si pulsamos botón derecho " + this);
+
+          //Podríamos ser muy concretos sobre qué hacemos
+          // otroParrafo.style.border = '3px solid red';
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Forma 1 manejo de eventos:Incluimos dentro del elemento p el código -->
+    <h3 id="titulo" onclick="titulo.style.color='blue';">Ejemplo 5 maneras de manejar eventos</h3>
+
+    <!-- Forma 2a y 2b -->
+    <p id="parrafo"
+    onclick="forma2a(event)"
+    onmouseenter="forma2b(this); console.log(this)">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+
+    <p id="otroParrafo">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+
+  </body>
+</html>
