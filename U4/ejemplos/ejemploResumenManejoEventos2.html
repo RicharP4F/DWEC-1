@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script>
+addEventListener("DOMContentLoaded",function(){
+  //a. Manejo de eventos mediante el uso de funciones que referencian a elementos:
+  document.querySelector("h3").onmouseover = function(){
+    document.querySelector("h3").innerHTML = "Menuda chorrada de ejemplo..."
+  }
+
+  //b. Manejo de eventos mediante escuchador de evento con addEventListener
+  // a y b se asocian a un elemento concreto. Es menos flexible y reutilizable que c.
+ var miP = document.getElementsByTagName('p')[0];
+  miP.addEventListener("mouseover",function(e){
+    //this es quien dio lugar al evento
+    this.innerHTML = "Esto es el primer párrafo";
+    //e es el propio evento y con e.target también referencio a quien lo provoca
+    e.target.style.color = "navy";
+  });
+
+  miP.addEventListener("mouseout",function(e){
+    //this es quien dio lugar al evento
+    this.textContent = "¿Qué está pasando aquí?";
+    //e es el propio evento y con e.target también referencio a quien lo provoca
+    e.target.style.color = "orange";
+  });
+
+  //c. Manejo mediante escucha de evento:
+  //Diferencia: afecta a donde lo ejecute porque referencio a e
+  //Si lo trato de esta manera, this es Window, no el elemento que genera el evento!
+  addEventListener("click",function(e){
+    e.target.style.color = "red";
+    console.log(this);
+  });
+});
+
+</script>
+</head>
+<body>
+<h3>Esto es un ejemplo de manejo de eventos</h3>
+<p> Aquí tenemos un párrafo </p>
+<p> Aquí tenemos otro párrafo con evento incorporado </p>
+</body>
+</html>

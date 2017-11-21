@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejercicio 16</title>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded',function(){
+        midiv.addEventListener('click',funcionClick1);
+        midiv.addEventListener('click',funcionClick2);
+      });
+
+      var n = 0;
+      function funcionClick1(){
+        midiv.innerHTML += " Me has hecho click!"
+        n++;
+        if (n>0){
+           midiv.removeEventListener('click',funcionClick1);
+        }
+      }
+
+      function funcionClick2(){
+        if (midiv.style.backgroundColor == ""){
+          midiv.style.backgroundColor = "yellow";
+        }else{
+          midiv.style.backgroundColor = "";
+        }
+      }
+      </script>
+  </head>
+  <body>
+    <div id="midiv">Esto es un div</div>
+  </body>
+</html>
