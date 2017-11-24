@@ -11,14 +11,14 @@ div {
 </head>
 <body>
 
-<p>This example demonstrates the difference between bubbling and capturing when adding event listeners.</p>
+<p>Este ejemplo demuestra la diferencia entre bubbling and capturing.</p>
 
 <div id="myDiv">
-  <p id="myP">Click this paragraph, I am Bubbling.</p>
+  <p id="myP">Haz click en el párrafo: Hago Bubbling.</p>
 </div><br>
 
 <div id="myDiv2">
-  <p id="myP2">Click this paragraph, I am Capturing.</p>
+  <p id="myP2">Haz click en el párrafo: Hago Capturing.</p>
 </div>
 
 <script>
@@ -26,20 +26,20 @@ var color = "blue";
 var color2 = "blue";
 document.getElementById("myP").addEventListener("click", function(e) {
 	  e.stopPropagation();
-    alert("You clicked the P element!");
-    this.style.backgroundColor = color;
+    alert("Click en el elemento P!");
+    e.target.style.backgroundColor = color;
     color = "red";
 }, false);
 
 document.getElementById("myDiv").addEventListener("click", function() {
-    alert("You clicked the DIV element!");
-    this.style.backgroundColor = color;
+    alert("Click en el elemento DIV!");
+    e.target.style.backgroundColor = color;
     color = "green";
 }, false);
 
 document.getElementById("myP2").addEventListener("click", function() {
-    alert("You clicked the P element!");
-    this.style.backgroundColor = color2;
+    alert("Click en el elemento P!");
+    e.target.style.backgroundColor = color2;
     color2 = "red";
 }, true);
 

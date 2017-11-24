@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejemplo evento teclado</title>
+<meta charset="utf-8">
+<script type="text/javascript">
+  onload = function() {
+    onkeydown = mostrarSiEspecial;
+    onkeypress = mostrarCaracter;
+    onkeyup = mostrarCaracterEspecial;
+  }
+
+  var especial;
+
+  function mostrarSiEspecial(e){
+    //Todas las teclas generan un keydown. Así distingo si es especial
+    especial = e.altKey || e.ctrlKey || e.shiftKey || e.metaKey;
+    if (especial){
+      var mensaje = '';
+      mensaje += "¿Se ha pulsado ALT? " + e.altKey;
+      mensaje += "¿Se ha pulsado CTRL? " + e.ctrlKey;
+      mensaje += "¿Se ha pulsado SHIFT? " + e.shiftKey;
+      mensaje += "¿Se ha pulsado META? " + e.metaKey;
+      mensaje += "<br><br>";
+      control.innerHTML += mensaje;
+    }
+  }
+
+  function mostrarCaracter(e) {
+    //Sólo si la tecla genera un keypress es un carácter normal
+    var mensaje = '';
+    mensaje = "Se ha pulsado el ASCII número " + e.charCode + ", " +
+              " que es el " + String.fromCharCode(e.charCode) + ", con" +
+                " propiedad key " + e.key + ".<br><br>";
+    control.innerHTML += mensaje;
+  }
+
+  function mostrarCaracterEspecial(e) {
+    //Todas las teclas generan un keyup, si es especial, la hemos marcado antes
+    if (especial){
+      var mensaje = '';
+      mensaje = "Se ha pulsado la tecla " + e.keyCode + " " +
+                " que corresponde con " + e.key + "<br><br>";
+      control.innerHTML += mensaje;
+    }
+  }
+
+</script>
+</head>
+<body>
+<h3>Ejemplo JavaScript: pulse una tecla</h3>
+<div id="control"> </div>
+</body>
+</html>

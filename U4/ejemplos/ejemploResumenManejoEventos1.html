@@ -58,6 +58,7 @@
 
         //Forma 4b:
         oncontextmenu = function(e){
+          e.preventDefault();
           e.target.style.border = '1px solid black';
 
           //Aquí this es window
