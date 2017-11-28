@@ -31,21 +31,21 @@ document.getElementById("myP").addEventListener("click", function(e) {
     color = "red";
 }, false);
 
-document.getElementById("myDiv").addEventListener("click", function() {
+document.getElementById("myDiv").addEventListener("click", function(e) {
     alert("Click en el elemento DIV!");
     e.target.style.backgroundColor = color;
     color = "green";
 }, false);
 
-document.getElementById("myP2").addEventListener("click", function() {
-    alert("Click en el elemento P!");
+document.getElementById("myP2").addEventListener("click", function(e) {
+    alert("Click en el elemento P (Capturing)!");
     e.target.style.backgroundColor = color2;
     color2 = "red";
 }, true);
 
-document.getElementById("myDiv2").addEventListener("click", function() {
-    alert("You clicked the DIV element!");
-    this.style.backgroundColor = color2;
+document.getElementById("myDiv2").addEventListener("click", function(e) {
+    alert("Click en el element Div (Capturing)!");
+    e.target.style.backgroundColor = color2;
     color2 = "green";
 }, true);
 </script>
