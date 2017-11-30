@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Aclaración Formulario</title>
+    <script type="text/javascript">
+      onload = function(){
+        //onsubmit es sobre el formulario
+        document.forms[0].onsubmit = function(e){
+          //Aunque no exista action, se produce onsubmit salvo si pongo e.preventDefault();
+          //e.preventDefault(); //impide que lo envíe
+          alert("Hola soy submit");
+
+          //Cuando quieras enviar debes hacer
+          //document.forms[0].submit();
+        }
+        //onclick es sobre el botón
+        document.getElementsByName("enviar")[0].onclick = function(e){
+          //Primero se ejecuta onclick y si pongo e.preventDefault no se produce onsubmit;
+          //e.preventDefault();
+          alert("Hola soy onclick");
+          //Equivale a e.preventDefault. Impide que se envíe
+          //Una vez enviado, puedes deshabilitar el botón
+          //document.getElementsByName("enviar")[0].value = "Enviando...";
+          //document.getElementsByName("enviar")[0].disabled = true;
+          //return false;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <input type="text" name="nombre" value="Pepe">
+      <input type="submit" name="enviar" value="Enviar">
+    </form>
+  </body>
+</html>
