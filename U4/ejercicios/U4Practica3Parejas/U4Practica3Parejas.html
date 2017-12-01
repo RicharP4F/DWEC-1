@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cada oveja con su pareja</title>
+    <script src="parejas.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="parejas.css">
+  </head>
+  <body>
+    <div id="pagina">
+        <div id="marca">
+        <h1>First Dates Disney</h1>
+    </div>
+    <div id="contenido"><!--div para el contenido-->
+      <div id="tablero">Cargando...</div><!--tablero dónde se carga el tablero con imágenes-->
+      <form name="datos" id="datos" action="parejas.html"> <!--formulario de datos y botón-->
+          <div id="fichas"></div>
+          <dl>
+                <dt>Intentos</dt><!--contador intentos-->
+                <dd id="movimientos"></dd>
+                <dt>Acertados</dt><!--contador aciertos-->
+                <dd id="aciertos"></dd>
+                <dt>Tiempo</dt><!--temporizador-->
+                <dd id="cronometro"><span id="minutos">0</span>:<span id="segundos">0</span></dd>
+          </dl>
+          <p><input type="submit" value="Reiniciar"></p><!--botón reiniciar-->
+      </form>
+    </div><!--fin del div de contenido-->
+  </body>
+</html>
