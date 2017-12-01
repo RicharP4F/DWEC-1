@@ -5,24 +5,38 @@
     <title>Aclaración Formulario</title>
     <script type="text/javascript">
       onload = function(){
-        //onsubmit es sobre el formulario
+
+        //onsubmit es un evento sólo sobre el formulario
         document.forms[0].onsubmit = function(e){
-          //Aunque no exista action, se produce onsubmit salvo si pongo e.preventDefault();
+          //Esta función se ejecuta cuando se pulsa el botón submit, después del evento onclick
+          //Si pongo e.preventDefault(), evito que se envíe el formulario pero tendré que enviar manualmente después
           //e.preventDefault(); //impide que lo envíe
           alert("Hola soy submit");
 
-          //Cuando quieras enviar debes hacer
+          //Antes de enviar, podemos manipular el destino al que irá el formulario
+          //if (document.getElementsByName("nombre")[0].value == "Pepe") {
+          //  document.forms[0].action = "HolaPepe.html";
+          //}
+
+          //Justo antes de enviar el formulario, puedes deshabilitar el botón de Envío para que no exista rebote
+          //document.getElementsByName("enviar")[0].value = "Enviando...";
+          //document.getElementsByName("enviar")[0].disabled = true;
+
+          //Una vez modificado lo que queremos modificar, podemos enviar el formulario manualmente con submit()
           //document.forms[0].submit();
+
+          //También podemos impedir que se ejecute el evento submit devolviendo return false
+          //return false;
         }
+
+
         //onclick es sobre el botón
         document.getElementsByName("enviar")[0].onclick = function(e){
           //Primero se ejecuta onclick y si pongo e.preventDefault no se produce onsubmit;
           //e.preventDefault();
           alert("Hola soy onclick");
-          //Equivale a e.preventDefault. Impide que se envíe
-          //Una vez enviado, puedes deshabilitar el botón
-          //document.getElementsByName("enviar")[0].value = "Enviando...";
-          //document.getElementsByName("enviar")[0].disabled = true;
+
+          //Poner return false, impide que se ejecute submit. Equivale a preventDefault
           //return false;
         }
       }

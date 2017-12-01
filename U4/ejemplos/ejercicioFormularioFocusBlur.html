@@ -17,39 +17,45 @@
       }
       input[type="submit"]{
         float:right;
-        /*margin-right:22px;*/
         margin-top:5px;
+      }
+      #resultado{
+        font-style: italic;
+        color:blue;
       }
     </style>
     <script type="text/javascript">
       onload = function(){
+        //Asociamos la función ponFoco a los dos input
         function ponFoco(e){
           e.target.style.outline = "yellow solid 2px";
         }
         user.onfocus = ponFoco;
         pass.onfocus = ponFoco;
 
-        user.onblur = function (e){
-          e.target.style.outline = "none";
+        //Cuando el usuario pierda el foco, compruebo que se ha introducido un valor
+        user.onblur = function quitaFocoUsuario(e){
+          user.style.outline = "none"; //Quitamos el estilo
           if (user.value == null || user.value.trim().length == 0){
             var texto = "El campo usuario está vacío. Debes introducir un valor";
-            resultado.innerHTML = texto;
-            user.focus();
+            resultado.innerHTML = texto; //Ponemos el mensaje de error en resultado
+            user.focus(); //Ponemos el foco en el elemento con el error
           }else{
             resultado.innerHTML = "";
           }
         }
 
-        pass.onblur = function quitaFoco(e){
+        //Cuando el password pierde el foco, valido el password (que tiene más de 7 caracteres)
+        pass.onblur = function quitaFocoPassword(e){
             pass.style.outline = "none";
-            if (pass.value == null || pass.value.trim().length == 0){
-              resultado.innerHTML = "El campo contraseña está vacío. Debes introducir un valor";
+            if (pass.value == null || pass.value.length < 8){
+              resultado.innerHTML = "El campo contraseña debe tener al menos 8 caracteres";
               pass.focus();
             }else{
               resultado.innerHTML = "";
             }
         }
-      }
+    }
     </script>
   </head>
   <body>
@@ -64,7 +70,7 @@
           <input type="password" name="contraseña" id="pass">
         </div>
         <p id="resultado"></p>
-        <input type="submit" value="Aceptar">
+        <input type="submit" name="enviar" value="Aceptar">
       </fieldset>
     </form>
   </body>

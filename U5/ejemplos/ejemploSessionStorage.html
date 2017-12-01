@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style media="screen">
+  div{
+    color:red;
+  }
+</style>
+<script>
+  onload = function(){
+    document.querySelector("button").onclick = function clickCounter() {
+        if(sessionStorage != undefined) {
+            if (sessionStorage.clickcount) {
+                sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+            } else {
+                sessionStorage.clickcount = 1;
+            }
+            document.getElementById("result").innerHTML = "Has pulsado el botón " + sessionStorage.clickcount + " veces!";
+        } else {
+            document.getElementById("result").innerHTML = "Tu navegador no soporta este tipo de almacenamiento...";
+        }
+    }
+  }
+</script>
+</head>
+<body>
+  <p><button type="button">Pulsa el botón</button></p>
+  <div id="result"></div>
+  <p>Si cierras el navegador, ¿Qué pasa con la cuenta?</p>
+</body>
+</html>

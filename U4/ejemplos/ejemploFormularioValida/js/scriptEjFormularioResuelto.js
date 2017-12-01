@@ -112,7 +112,17 @@ formulario.onsubmit = function(){
       ret = false;
     }
 
+    //Consultamos si se ha checqueado los check
+    if(foro.checked){
+      formulario.action = "foro.html";
+    }
+    if(eventos.checked){
+      formulario.action = "eventos.html";
+    }
+
+    //Resultado de la validación.
     if (ret){
+      //Si estamos aquí es que no ha habido ningún problema
       errList = "Tu petición se ha enviado correctamente";
       err.style.color="blue";
     }else{
@@ -120,6 +130,6 @@ formulario.onsubmit = function(){
     }
 
     err.innerHTML = errList;
-    return ret;
+    return ret; //Si ha habido problema, ret será false y evitaremos el envío. Si fuera true se enviaría.
 }
 }

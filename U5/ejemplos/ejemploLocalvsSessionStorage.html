@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>Web Storage</title>
+   <style media="screen">
+     label {
+       width: 90px;
+       float: left;
+     }
+     input[type="text"], input[type="email"], input[type="password"]{
+       padding-left: 0.4em;
+     }
+     input[type="button"]{
+       width: 200px;
+     }
+   </style>
+   <script>
+      window.onload = function () {
+         if (window.sessionStorage != null) {
+            //Recuperar claves
+            obtenerClavesSesion();
+         }
+         if (window.localStorage != null) {
+            //Recuperar claves
+            obtenerClavesLocal();
+         }
+         guardar_claves_session.onclick = guardarClavesSesion;
+         borrar_claves_session.onclick = borrarClavesSesion;
+
+         guardar_claves_local.onclick = guardarClavesLocal;
+         borrar_claves_local.onclick = borrarClavesLocal;
+      };
+
+      function borrarClavesSesion() {
+         sessionStorage.clear();
+        //  obtenerClavesSesion();
+      }
+      function obtenerClavesSesion() {
+         if (window.sessionStorage != null) {
+            //Recuperar claves y escribirlas en los input correspondientes
+            var nombre = sessionStorage.getItem("nombre");
+            var nombre_object = document.getElementById("nombre");
+            nombre_object.value = nombre;
+            var apellidos = sessionStorage.apellidos;
+            var apellidos_object = document.getElementById("apellidos");
+            apellidos_object.value = apellidos;
+         }
+      }
+      function guardarClavesSesion() {
+         if (window.sessionStorage != null) {
+            //Guardar claves con los valores de los inputs
+            var nombre_object = document.getElementById("nombre");
+            var nombre = nombre_object.value;
+            sessionStorage.setItem("nombre", nombre);
+            var apellidos_object = document.getElementById("apellidos");
+            var apellidos = apellidos_object.value;
+            sessionStorage.apellidos = apellidos;
+         }
+      }
+      function borrarClavesLocal() {
+         localStorage.clear();
+        //  obtenerClavesLocal();
+      }
+      function obtenerClavesLocal() {
+         if (window.localStorage != null) {
+            //Recuperar claves y escribirlas en los input correspondientes
+            var usuario = localStorage.getItem("usuario");
+            var usuario_object = document.getElementById("usuario");
+            usuario_object.value = usuario;
+            var email = localStorage.email;
+            var email_object = document.getElementById("email");
+            email_object.value = email;
+            var pass = localStorage.pass;
+            var pass_object = document.getElementById("contrasena");
+            pass_object.value = pass;
+         }
+      }
+      function guardarClavesLocal() {
+         if (window.localStorage != null) {
+            //Guardar claves con los valores de los inputs
+            var usuario_object = document.getElementById("usuario");
+            var usuario = usuario_object.value;
+            localStorage.setItem("usuario", usuario);
+            var email_object = document.getElementById("email");
+            var email = email_object.value;
+            localStorage.email = email;
+            var pass_object = document.getElementById("contrasena");
+            var pass = pass_object.value;
+            localStorage.pass = pass;
+         }
+      }
+   </script>
+</head>
+<body>
+   <form name="session">
+      <label for="nombre">Nombre: </label><input type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre"/><br>
+      <label for="apellidos">Apellidos: </label><input type="text" name="apellidos" id="apellidos" placeholder="Introduce tus apellidos"/><br>
+      <br>
+      <input type="button" id="guardar_claves_session" value="Guardar claves sessionStorage"></input>
+   </form>
+   <input type="button" id="borrar_claves_session" value="Borrar claves sessionStorage"></input>
+   <br>
+   <br>
+   <form name="local">
+      <label for="usuario">Usuario:</label><input type="text" id="usuario"/><br>
+      <label for="email">Email:</label><input type="email" id="email"/><br>
+      <label for="contrasena">Contraseña:</label><input type="password" id="contrasena"/><br><br>
+      <input type="button" id="guardar_claves_local" value="Guardar claves localStorage"></input>
+   </form>
+   <input type="button" id="borrar_claves_local" value="Borrar claves localStorage"></input>
+</body>
+</html>
