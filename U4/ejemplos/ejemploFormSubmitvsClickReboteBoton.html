@@ -14,19 +14,19 @@
           alert("Hola soy submit");
 
           //Antes de enviar, podemos manipular el destino al que irá el formulario
-          //if (document.getElementsByName("nombre")[0].value == "Pepe") {
-          //  document.forms[0].action = "HolaPepe.html";
-          //}
+          if (document.getElementsByName("nombre")[0].value == "Pepe") {
+            document.forms[0].action = "HolaPepe.html";
+          }
 
           //Justo antes de enviar el formulario, puedes deshabilitar el botón de Envío para que no exista rebote
-          //document.getElementsByName("enviar")[0].value = "Enviando...";
-          //document.getElementsByName("enviar")[0].disabled = true;
+          document.getElementsByName("enviar")[0].value = "Enviando...";
+          document.getElementsByName("enviar")[0].disabled = true;
 
           //Una vez modificado lo que queremos modificar, podemos enviar el formulario manualmente con submit()
           //document.forms[0].submit();
 
           //También podemos impedir que se ejecute el evento submit devolviendo return false
-          //return false;
+          return false;
         }
 
 

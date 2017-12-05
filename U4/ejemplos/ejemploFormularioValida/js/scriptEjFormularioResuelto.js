@@ -1,14 +1,14 @@
 ﻿onload = function(){
 var formulario = document.forms[0];
-formulario.onsubmit = function(){
+formulario.onsubmit = function(e){
     var err = document.getElementsByClassName('errores')[0];
     var errList ="";
     var ret = true;
-
+    e.preventDefault();
     //validamos el nombre
     var nom = document.getElementsByName('nombre')[0].value;
     console.log(nom);
-    if (nom == null || nom.length == 0 || !(/^\S+$/.test(nom))){
+    if (nom == null || nom.length == 0 || !(/^\S+[\s?\S+]*$/.test(nom))){
          errList += "El nombre es erróneo <br/>"
          ret = false;
     }
@@ -102,7 +102,7 @@ formulario.onsubmit = function(){
       errList += "El email es incorrecto <br/>";
       ret = false;
     }
-    // if ( ! (/^\w+([\.\-\+]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,4})+$/.test(email)) ){
+    //if ( ! (/^\w+([\.\-\+]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,4})+$/.test(email)) ){
     //   errList += "El email es incorrecto <br/>";
     //   ret = false;
     // }
@@ -125,11 +125,12 @@ formulario.onsubmit = function(){
       //Si estamos aquí es que no ha habido ningún problema
       errList = "Tu petición se ha enviado correctamente";
       err.style.color="blue";
+      formulario.submit();
     }else{
       err.style.color="red";
     }
 
     err.innerHTML = errList;
-    return ret; //Si ha habido problema, ret será false y evitaremos el envío. Si fuera true se enviaría.
+    //return ret; //Si ha habido problema, ret será false y evitaremos el envío. Si fuera true se enviaría.
 }
 }
