@@ -3,13 +3,22 @@ addEventListener('DOMContentLoaded',function(){
 
   function ponFoco(e){
     //utilizo el objeto e para hacer referencia al nodo que provoca el evento: e.target
-    console.log(e);
+    //console.log(e);
     e.target.style.outline = "purple solid 1px";
+    //OTRA FORMA:
+    //si cambiamos el borde, tenemos que quitar el outline y poner el borde así:
+    // e.target.style.outline = "none";
+    // e.target.style.border = "1px solid purple";
   }
 
   function quitaFoco(e){
     //dejamos las opciones por defecto cuando se pierde el foco
     e.target.style.outline = "none";
+    //OTRA FORMA:
+    //si cambiamos el estilo del borde, podemos restaurarlo así:
+    //e.target.style.outline ="none";
+    //e.target.style.borderColor = "initial";
+    //e.target.style.borderStyle = "inset";
   }
 
   //Selecciono los nodos inputs
@@ -38,7 +47,7 @@ addEventListener('DOMContentLoaded',function(){
 
     //validamos el nombre:
     var nom = document.getElementsByName('nombre')[0].value;
-    if (nom == null || nom.length == 0 || !(/^\S+[\s?\S+]*$/.test(nom))){
+    if (nom || !(/^\S+[\s?\S+]*$/.test(nom))){
          errList += "El nombre es erróneo <br/>"
          ret = false;
     }

@@ -26,7 +26,7 @@ console.log(k);
 
 //no declarar variable. No tiene espacio, no tiene tipo, no existe.
 console.log(s);
-// 
+//
 // //cadena vacía. Se ha declarado, se le ha asignado el tipo string pero se ha dejado la cadena vacía
 // var s = "";
 // console.log(s);
@@ -84,8 +84,8 @@ console.log(s);
 // }
 
 // // ***** If todo false
-// if ( false || null || undefined || "" || 0 || NaN) {
-//   console.log("Este línea nunca se ejecutará");
+ if ( false || null || undefined || "" || 0 || NaN) {
+   console.log("Este línea nunca se ejecutará");
 // }
 // else {
 //   console.log ("Son todos unos falsos");

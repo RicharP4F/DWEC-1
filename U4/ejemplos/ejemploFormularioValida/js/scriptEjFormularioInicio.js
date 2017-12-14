@@ -12,6 +12,8 @@ formulario.onsubmit = function validacion(){
     //Ret es lo que devolverá return cuando acabe la validación
     var ret = true;
 
+    
+
     if (ret){
       errList = "Tu petición se ha enviado correctamente";
       err.style.color="blue";

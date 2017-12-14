@@ -13,22 +13,22 @@ formulario.onsubmit = function(e){
          ret = false;
     }
 
-    // function nulo(campo){
-    //   letras = "abcdefghijklmnñopqrstuvwxyzáéíóúçäëü";
-    //   if (campo == null || campo.length==0){
-    //       return true;
-    //   }
-    //   else{
-    //       for (i in campo){
-    //         console.log(campo[i]);
-    //         if (letras.indexOf(campo[i].toLowerCase())==-1){
-    //           return true;
-    //           break;
-    //         }
-    //       }
-    //   }
-    //   return false;
-    // }
+    function nulo(campo){
+      letras = "abcdefghijklmnñopqrstuvwxyzáéíóúçäëü";
+      if (campo == null || campo.length==0){
+          return true;
+      }
+      else{
+          for (i in campo){
+            console.log(campo[i]);
+            if (letras.indexOf(campo[i].toLowerCase())==-1){
+              return true;
+              break;
+            }
+          }
+      }
+      return false;
+    }
 
     // if (nulo(nom)){
     //   errList += "El nombre es erróneo <br/>"
