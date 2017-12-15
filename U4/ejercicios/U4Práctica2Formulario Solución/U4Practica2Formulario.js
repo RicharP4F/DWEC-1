@@ -47,7 +47,7 @@ addEventListener('DOMContentLoaded',function(){
 
     //validamos el nombre:
     var nom = document.getElementsByName('nombre')[0].value;
-    if (nom || !(/^\S+[\s?\S+]*$/.test(nom))){
+    if ( !nom || !(/^\S+[\s?\S+]*$/.test(nom))){
          errList += "El nombre es erróneo <br/>"
          ret = false;
     }
