@@ -1,0 +1,43 @@
+form {
+  margin: 10px;
+}
+legend{
+  font-weight: bold;
+}
+div {
+  margin: .4em 0 .8em 0;
+}
+div label {
+  width: 20%;
+  float: left;
+}
+div#check, div#inputHora {
+  clear:left;
+  padding-top: 10px;
+}
+p{
+  display: inline;
+}
+span{
+  width: 35%;
+  float:left;
+}
+input[type="text"]{
+  padding: 0.4em;
+}
+input[type="submit"]{
+  display: block;
+  margin: .6em 0 1.2em 0;
+  float: right;
+  font-size: 16px;
+  color: blue;
+  background-color: lightgray;
+}
+.tipoSala img{
+  margin-top: 20px;
+  width: 250px;
+  height: auto;
+}
+.explicaHorario{
+  display: none;
+}

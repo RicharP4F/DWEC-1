@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Examen DWEC Bloque 2: U4 y U5</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="DWECExBloque2.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <form id="formulario" action="DWECExResumenSala.html" method="get" enctype="application/x-www-urlencoded">
+    <!--Zona info personal-->
+    <h1>Aplicación para la reserva de salas de reuniones</h1>
+    <fieldset>
+      <legend>Los campos marcados con "*" son obligatorios</legend>
+      <div>
+        <label for="email">Email*:</label>
+        <input type="email" name="email" id="email"></input>
+      </div>
+
+      <div>
+        <label for="depart">Departamento*:</label>
+        <input type="text" name="depart" id="depart"></input>
+      </div>
+      <fieldset>
+        <legend>Datos de la reserva:</legend>
+        <div>
+          <label for="asistentes">Nº de asistentes*:</label>
+          <input type="text" name="asistentes" id="asistentes"></input>
+        </div>
+
+        <div>
+          <label for="fecha">Fecha de reserva*:</label>
+          <input type="date" name="fecha" id="fecha"></input>
+        </div>
+
+        <div id="inputHora">
+          <label for="hora">Hora de la reserva*:</label>
+          <input type="text" name="hora" id="hora"></input>
+          <a href="#masInfo">Horarios posibles</a>
+          <div class="explicaHorario">
+            Los horarios disponibles son de 08h a 21h. Especifique 2 dígitos para indicar la hora de reserva.
+          </div>
+        </div>
+
+        <div id="medios">
+          <label for="selector">Equipación:</label>
+          <select name="medios" id="selector">
+            <option value="0">No necesito medios</option>
+            <option value="proyector">Sala con proyector</option>
+            <option value="videoconferencia">Sala de videoconferencia</option>
+            <option value="ordenadores">Sala con ordenadores</option>
+          </select>
+          <div class="tipoSala">
+            <img src="salareuniones.png" alt="sala">
+          </div>
+        </div>
+
+      </fieldset>
+      <div id="check">
+        <input type="checkbox" name="cond" id="cond"></input>
+        <p>Me comprometo a liberar la sala en caso de cancelar o posponer la reunión*</p>
+      </div>
+    </fieldset>
+    <input type="submit" value="Enviar" id="enviar"></input>
+
+    <!-- Incluyo un div vacío para poner los errores del formulario -->
+    <div id="errores"></div>
+    </form>
+
+  </body>
+</html>

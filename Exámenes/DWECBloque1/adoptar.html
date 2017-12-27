@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Protectora de animales Juan de Garay</title>
+    <style media="screen">
+      ul {
+        padding-bottom: 20px;
+      }
+      li{
+        display: inline-block;
+        font-size: 1em;
+      }
+      h1{
+        text-align: center;
+        font-family: Verdana, sans-serif;
+        color: white;
+      }
+      h2{
+        font-family: Verdana, sans-serif;
+      }
+      body{
+        text-align: center;
+      }
+      header{
+        background-color: teal;
+      }
+      div{
+        margin-bottom: 50px;
+      }
+      div button{
+        margin:10px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 onclick="recarga()">Protectora de animales Juan de Garay</h1>
+      <h2>Adopción</h2>
+    </header>
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre">
+      <label for="telefono">Teléfono de contacto:</label>
+      <input type="tel" name="telefono">
+      <br>
+      <button onclick="adoptar()">Adoptar</button>
+    </div>
+    <script src="lista.js" charset="utf-8"></script>
+    <script src="inventario.class.js" charset="utf-8"></script>
+    <script src="scriptAdoptar.js" charset="utf-8"></script>
+  </body>
+</html>
