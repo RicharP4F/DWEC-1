@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<alumnos>
+<alumno>
+<nombre>Maria</nombre>
+<apellidos>Gómez Pérez</apellidos>
+</alumno>
+<alumno>
+<nombre>Paco</nombre>
+<apellidos>Martínez García</apellidos>
+</alumno>
+</alumnos>

@@ -1,0 +1,10 @@
+{"StarWarsFilms":[
+	{"titulo": "Episodio IV", "nombre":"Una Nueva Esperanza", "estreno": 1977 ,"director": "George Lucas"},
+	{"titulo": "Episodio V", "nombre":"El Imperio Contraataca", "estreno":1980, "director": "George Lucas"},
+	{"titulo": "Episodio VI", "nombre":"El Retorno del Jedi", "estreno":1984, "director": "George Lucas"},
+	{"titulo": "Episodio I", "nombre":"La Amenaza Fantasma", "estreno":1999, "director": "George Lucas"},
+	{"titulo": "Episodio II", "nombre":"El ataque de los clones", "estreno":2002, "director": "George Lucas"},
+	{"titulo": "Episodio III", "nombre":"La Venganza de los Sith", "estreno":2005, "director": "George Lucas"},
+	{"titulo": "Episodio VII", "nombre":"El Despertar de la Fuerza", "estreno":2015, "director": "J.J. Abrams"}
+]
+}

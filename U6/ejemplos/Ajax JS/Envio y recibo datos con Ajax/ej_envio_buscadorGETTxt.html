@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo Buscador Provincias</title>
+    <script type="text/javascript">
+      var xhr = new XMLHttpRequest();
+      onload = function(){
+        buscador.onkeyup = function(){
+          var str = buscador.value;
+          console.log(str);
+          xhr.open("GET","provincias.php?q=" + str, true);
+          xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4 && xhr.status == 200){
+              resultado.innerHTML = xhr.responseText;
+            }
+          }
+          xhr.send();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form method="GET">
+      Introduce un nombre <input type="text" id="buscador">
+      <p>Sugerencia <span id="resultado"></span></p>
+    </form>
+  </body>
+</html>

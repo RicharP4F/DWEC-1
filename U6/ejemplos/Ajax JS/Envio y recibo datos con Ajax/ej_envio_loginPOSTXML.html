@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo de envío de un formulario de login para validación</title>
+    <script type="text/javascript">
+      if (XMLHttpRequest){
+        var xhr = new XMLHttpRequest();
+      }else if(ActiveXObject("Microsoft.XMLHTTP")){
+        var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      onload = function(){
+        document.forms[0].onsubmit = function(e){
+            e.preventDefault(); //nunca enviaré el formulario porque me traeré los datos con Ajax en lugar de enviarlos con submit
+            var url = "./validaLogin.php";
+            xhr.open("POST",url,true);
+            xhr.onreadystatechange = function(){
+              if(xhr.readyState == 4 && xhr.status == 200){
+                var respuesta = xhr.responseText;
+                console.log(respuesta);
+                if (respuesta == "1"){
+                  var salida = "Mostramos Home usuario logado";
+                }else{
+                  var salida = "Mostramos las opciones para darse de alta o recuperar password";
+                }
+                document.getElementById("resLogin").innerHTML = salida;
+              } else if(xhr.readyState == 4){
+                alert("Se ha producido un error al obtener los datos"
+                + "\n\nreadyState:" + xhr.readyState
+                + "\nstatus: " + xhr.status
+                + "\nheaders: " + xhr.getAllResponseHeaders());
+              }
+            }
+            //Cogemos el valor que ha puesto el usuario:
+            var us = document.getElementById("usuario").value;
+            var pass = document.getElementById("pass").value;
+
+            //Creamos un literal con formato XML
+            usuario.nombre = us;
+            usuario.password = pass;
+            var strLogin = '<?xml version="1.0" encoding="utf-8" ?>';
+            strLogin += "<usuario><login>" + us + "</login>";
+            strLogin += "<password>" + pass + "</password></usuario>";
+
+            //Definimos un parser que convierta el literal en xml
+            var parser = new DOMParser();
+            var datosXML = parser.parseFromString(strLogin, "text/xml");
+            console.log("Enviamos esto: " + datosXML);
+
+            //Indicamos que enviamos un XML
+            xhr.setRequestHeader("Content-Type","text/xml");
+
+            xhr.send(datosXML);
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Ejemplo envío datos Login y obtengo respuesta mediante Ajax</h1>
+    <h2>Formato envío: XML</h2>
+    <h2>Formato recibido: Texto</h2>
+    <form action="#" method="post">
+      <div>Usuario: <input type="text" id="usuario" name="usuario" placeholder="Introduce tu usuario..." maxlength="40"></input></div>
+      <div>Contraseña: <input type="password" id="pass" name="pass"></input></div>
+      <div id="resLogin"></div>
+      <input type="submit" name="boton" id="enviar" value="Enviar"></input>
+    </form>
+  </body>
+</html>

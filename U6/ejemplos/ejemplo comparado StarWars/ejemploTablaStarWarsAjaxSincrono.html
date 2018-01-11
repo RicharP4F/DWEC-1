@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style media="screen">
+	.columna{
+		display:inline-block;
+		width: 180px;
+		height: 20px;
+		border-radius: 8px;
+		border: 2px solid navy;
+	}
+</style>
+<script>
+
+onload = function(){
+
+	function dibujaTabla(StarWarsFilms){
+		console.log(StarWarsFilms);
+		var d, t;
+		var dtable = document.createElement('div');
+		document.body.appendChild(dtable);
+
+		for (campo in StarWarsFilms[0]){
+				d = document.createElement('div');
+				t = document.createTextNode(campo);
+				d.appendChild(t);
+				d.setAttribute('class','columna');
+				d.style.fontWeight = "bold";
+				dtable.appendChild(d);
+		}
+
+		/*Recorro el array de objetos JSON*/
+		for (var i=0; i<StarWarsFilms.length; i++){
+			/*Recorro los campos del objeto JSON*/
+			drow = document.createElement('div');
+			dtable.appendChild(drow);
+			for (campo in StarWarsFilms[i]){
+				d = document.createElement('div');
+				t = document.createTextNode(StarWarsFilms[i][campo]);
+				d.appendChild(t);
+				d.setAttribute('class','columna');
+				drow.appendChild(d);
+			}
+		}
+ }
+
+	document.querySelector('[type = button]').onclick = function(){
+		//creamos el objeto XMLHTTPRequest
+		if (window.XMLHttpRequest){
+			var xhr = new XMLHttpRequest;
+		}else{
+			if (window.ActiveXObject){
+				var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+		}
+
+		xhr.open('GET','StarWarsFilms.json',false);
+		xhr.send();
+		//console.log('Hasta que no llegue la respuesta a lo que acabamos de enviar
+		//no pasará a la línea siguiente
+		
+		//No necesito comprobar el estado de nada porque lo recibirá a continuación
+		//xhr.onreadystatechange = function(){
+		//	if ((xhr.readyState == 4) && (xhr.status == 200)){
+				var datos = xhr.responseText;
+				var obj = JSON.parse(datos);
+				var StarWarsFilms = obj["StarWarsFilms"];
+				dibujaTabla(StarWarsFilms);
+		//	}
+		//}
+
+	}
+
+}
+
+</script>
+</head>
+<body>
+	<input type="button" value="Dibuja tabla"></input>
+</body>
+</html>

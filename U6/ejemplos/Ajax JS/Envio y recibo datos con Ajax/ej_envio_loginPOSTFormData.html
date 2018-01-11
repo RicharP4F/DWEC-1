@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo de envío de un formulario de login para validación</title>
+    <script type="text/javascript">
+      if (XMLHttpRequest){
+        var xhr = new XMLHttpRequest();
+      }else if(ActiveXObject("Microsoft.XMLHTTP")){
+        var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      onload = function(){
+        document.forms[0].onsubmit = function(e){
+            e.preventDefault(); //nunca enviaré el formulario porque me traeré los datos con Ajax en lugar de enviarlos con submit
+            var url = "./validaLogin.php";
+            xhr.open("POST",url,true);
+            xhr.onreadystatechange = function(){
+              if(xhr.readyState == 4 && xhr.status == 200){
+                var respuesta = xhr.responseText;
+                console.log(respuesta);
+                if (respuesta == "1"){
+                  var salida = "Mostramos Home usuario logado";
+                }else{
+                  var salida = "Mostramos las opciones para darse de alta o recuperar password";
+                }
+                document.getElementById("resLogin").innerHTML = salida;
+              } else if(xhr.readyState == 4){
+                alert("Se ha producido un error al obtener los datos"
+                + "\n\nreadyState:" + xhr.readyState
+                + "\nstatus: " + xhr.status
+                + "\nheaders: " + xhr.getAllResponseHeaders());
+              }
+            }
+            //No necesitamos coger valores campo a campo, cogemos el formulario entero!
+            var formulario = document.forms[0];
+            //Creamos un objeto Form Data que tendrá los campos del formulario que le hemos pasado y que podemos enviar.
+            var objFD = new FormData(formulario);
+            console.log("Enviamos esto: " + objFD);
+            
+            //SOBRE FORM DATA:
+            //el método get() de FormData permite obtener un valor dado un campo
+            //console.log("El usuario que envío es: " + objFD.get("usuario"));
+            //con append podríamos añadir información al envío: objFD.append("campo","valorcampo");
+
+            //Indicamos que enviamos un XML
+            xhr.setRequestHeader("Content-Type","multipart/form-data");
+
+
+            xhr.send(objFD);
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Ejemplo envío datos Login y obtengo respuesta mediante Ajax</h1>
+    <h2>Formato envío: objeto FormData</h2>
+    <h2>Formato recibido: Texto</h2>
+    <form action="#" method="post">
+      <div>Usuario: <input type="text" id="usuario" name="usuario" placeholder="Introduce tu usuario..." maxlength="40"></input></div>
+      <div>Contraseña: <input type="password" id="pass" name="pass"></input></div>
+      <div id="resLogin"></div>
+      <input type="submit" name="boton" id="enviar" value="Enviar"></input>
+    </form>
+  </body>
+</html>
