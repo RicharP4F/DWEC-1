@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("button").click(function(){
+          //Realiza la llamada Ajax del fichero y lo carga en p
+          $.post("infoServ.txt", function(datos,st){ //Podríamos poner un parámetro (enviaDatos en este caso), con datos para el servidor (lo mismo que enviamos con send() en JS).
+            $("#resultado").html(datos);
+            if (st != "success") {
+              alert("Error: " + st);
+            }
+          });
+        });
+    	});
+    </script>
+  </head>
+  <body>
+    <h1>Ejemplo de recepción (de texto) con Ajax mediante JQuery ($.post)</h1>
+    <button type="button">Llamada Ajax</button>
+    <p id="resultado"></p>
+  </body>
+</html>

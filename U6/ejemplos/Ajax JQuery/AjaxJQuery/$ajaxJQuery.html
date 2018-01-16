@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("button").click(function(){
+          //Realiza la llamada Ajax del fichero y lo carga en p
+          $.ajax({
+            url: "alumnos.json",
+            type: "GET",
+            dataType: "json",
+            success: function(datos){
+              console.log(datos);
+              $.each(datos.alumnos, function(i, campo){ //each, recorre cada objeto del array
+                  $("#resultado").append("nombre: " + campo.nombre + ", apellidos: " + campo.apellidos + "</br>");
+              });
+            },
+            error: function(xhr, st, error){
+                alert("Error: " + st);
+            }
+          });
+        });
+    	});
+    </script>
+  </head>
+  <body>
+    <h1>Ejemplo de recepción (de JSON) con Ajax mediante JQuery ($.ajax)</h1>
+    <button type="button">Llamada Ajax</button>
+    <p id="resultado"></p>
+  </body>
+</html>

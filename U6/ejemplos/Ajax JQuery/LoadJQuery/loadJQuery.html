@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Petición Ajax con JQuery usando LOAD</title>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+        $("button").click(function(){
+          //Realiza la llamada Ajax con el método GET del fichero txt y lo carga en p
+          $("#resultado").load("infoServ.txt");
+        });
+    	});
+    </script>
+  </head>
+  <body>
+    <h1>Ejemplo de recepción de texto con Ajax mediante JQuery (LOAD)</h1>
+    <button type="button">Llamada Ajax</button>
+    <p id="resultado"></p>
+  </body>
+</html>
