@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Combos StarWars</title>
+    <style media="screen">
+      h1{
+        text-align: center;
+      }
+      div > div {
+        align-items: center;
+        width: 33%;
+        margin: 0;
+        float: left;
+      }
+      p{
+        margin-top: 0;
+      }
+    </style>
+    <script type="text/javascript">
+    var url = "";
+      function mostrarOpciones(v){
+        if(v!="none"){
+          url = "https://swapi.co/api/" + v;
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4 && xhr.status ==200){
+              var x = xhr.responseText;
+              var jObj = JSON.parse(x);
+              var items = jObj.results;
+              var str = "<option value='none'>Elige opción</option>";
+              if (v == "films"){
+                for (i in items){
+                  str += "<option value=" + i + ">" + items[i].title + "</option>"
+                }
+              }
+              else{
+                for (i in items){
+                  str += "<option value=" + i + ">" + items[i].name + "</option>"
+                }
+              }
+              document.getElementById("items").innerHTML = str;
+            }
+          }
+          xhr.open("GET",url,true);
+          xhr.send();
+        } else {
+          document.getElementById("items").innerHTML = "<option value='none'>¿¿¿¿????</option>";
+        }
+      }
+
+      //combo 2:
+      function mostrarMasOpciones(v2){
+        if(v2 != "none"){
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4 && xhr.status ==200){
+              var x = xhr.responseText;
+              var jObj = JSON.parse(x);
+              var str = "";
+              var i = parseInt(v2);
+              var items = jObj.results[i];
+              var siesweb= new RegExp("https://","i");
+              for (var campo in items) {
+                  console.log(typeof(items[campo]));
+                  if ((typeof(items[campo]) == "string" && siesweb.test(items[campo]) == false)|| typeof(items[campo]) == "number"){
+                    str += "<p>" + campo + ":" + items[campo] + "</p>";
+                }
+              }
+              document.getElementById("ficha").innerHTML = str;
+          }
+        }
+        xhr.open("GET",url,true);
+        xhr.send();
+      }
+      else {
+        document.getElementById("items").innerHTML = " ";
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <h1>Wiki Star Wars</h1>
+    <div>
+      <div>
+        <select name="opciones" onchange="mostrarOpciones(this.value);">
+          <option value="none">Elige opción</option>
+          <option value="people">Personas</option>
+          <option value="planets">Planetas</option>
+          <option value="starships">Naves</option>
+          <option value="films">Películas</option>
+        </select>
+      </div>
+      <div id="combo">
+        <select id="items" name="items" onchange="mostrarMasOpciones(this.value);">
+          <option value="none"> ¿¿¿¿¿????? </option>
+        </select>
+      </div>
+      <div id="ficha">
+
+      </div>
+    </div>
+  </body>
+</html>

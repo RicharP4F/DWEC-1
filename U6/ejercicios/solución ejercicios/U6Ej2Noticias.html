@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>U6 Ejercicio 2 </title>
+    <script type="text/javascript">
+      onload = function(){
+        // de esta manera cubrimos el caso de IU 5 y 6:
+        if (window.XMLHttpRequest){
+          var xhr = new XMLHttpRequest();
+        }else if (ActiveXObject("Microsoft.XMLHTTP")){
+          var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        //Solución con AddEventListener
+
+        //IMP: readystatechange es todo en minúsculas (no CamelCase) y gestionarRespuesta no ejecuta la función, la pasa.
+        xhr.addEventListener('readystatechange',gestionarRespuesta);
+        var n = Math.floor(Math.random()*4) + 1;
+        xhr.open('GET','datos'+ n + '.txt',true);
+        xhr.send();
+
+        function gestionarRespuesta(){
+          if (xhr.readyState == 4 && xhr.status == 200){
+            document.getElementById('titular').innerHTML = xhr.responseText;
+          }
+          //en todos los casos, escribimos en los div:
+          estado.innerHTML += xhr.readyState + "<br>";
+          cabecera.innerHTML += xhr.getAllResponseHeaders() + "<br>";
+          errores.innerHTML += xhr.statusText + "<br>";
+        }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="titular"><h2>Este es el titular original de la noticia</h2></div>
+    <h3>Estados de petición</h3>
+    <div id="estado"></div>
+    <h3>Cabeceras de respuesta del servidor</h3>
+    <div id="cabecera"></div>
+    <h3>Código de estado</h3>
+    <div id="errores"></div>
+  </body>
+</html>

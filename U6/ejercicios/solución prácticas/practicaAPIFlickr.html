@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Práctica Flickr JQuery</title>
+    <style media="screen">
+      body{
+        font-family:"Verdana";
+       }
+       div, body{
+         text-align: center;
+       }
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("button").click(function(){
+          //por si ha pulsado anteriormente
+          $("#images").empty();
+          //ponemos el gif de carga
+          for (var i = 0; i < 10; i++) {
+            $("<img/>").attr("src", "ajax-loader.gif").appendTo("#images").width("100").height("100");
+          }
+
+          //consultamos el valor del selector
+          var str = $("select").val();
+
+          //incorporamos el tag a la petición de la url
+          var url = "http://api.flickr.com/services/feeds/photos_public.gne?tags=" + str + "&format=json&jsoncallback=?";
+          // console.log(url);
+          $.getJSON(url,
+            function(data,st,xhr){
+              if (st=="success"){
+                //eliminamos la imagen de carga
+                $("#images").empty();
+                //data es un objeto json
+                //data.items es un array de objetos
+                $.each(data.items,function(i,item){
+                  //item devuelve cada objeto por separado
+                  console.log(item.media.m);
+                  $("<img/>").attr("src", item.media.m).appendTo("#images").width("100").height("100");
+                  if ( i == 9 ) return false; //me dará los primeros 10 objetos
+                })
+              }else if(st = "error"){
+                alert('Error ' + xhr.status);
+              }
+
+            }
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Mi Flickr</h1>
+    <div id="images">
+    </div>
+    <button type="button" name="boton">Dibuja la imagen</button>
+    <select name="combo">
+      <option value="nothing">Escoge el tipo de imagen</option>
+      <option value="cats">Gatitos</option>
+      <option value="landscapes">Paisajes</option>
+      <option value="dogs">Perritos</option>
+      <option value="puppys">Cachorros</option>
+      <option value="cars">Coches</option>
+      <option value="buildings">Edificios</option>
+      <option value="flowers">Flores</option>
+    </select>
+  </body>
+</html>

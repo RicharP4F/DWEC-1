@@ -22,8 +22,8 @@
             //Si estamos aquí es que todo ha ido bien y el paquete está en xhr.responseText;
 
             console.log(xhr.responseText);
-            var objJSON = JSON.parse(xhr.responseText);
-            var alumnos = objJSON.alumnos;
+            var objJS = JSON.parse(xhr.responseText);
+            var alumnos = objJS.alumnos;
             var st = "<ul>";
             console.log(alumnos[0]);
             for (var i = 0; i < alumnos.length; i++) {
