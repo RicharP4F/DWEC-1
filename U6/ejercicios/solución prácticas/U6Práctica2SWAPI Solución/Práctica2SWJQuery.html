@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo uso API SW con JQuery</title>
+    <style media="screen">
+      h1{
+        text-align: center;
+      }
+      div > div {
+        align-items: center;
+        width: 33%;
+        margin: 0;
+        float: left;
+      }
+      p{
+        margin-top: 0;
+      }
+    </style>
+    <script src="./js/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+          var urlBase = "https://swapi.co/api/";
+          var url; //variable global
+          $("#selector1").change(function(){
+            var cat = $("#selector1").val();
+            if (cat != "0"){
+              url = urlBase + cat;
+              var str = "<option>Escoge una opción</option>";
+              $.getJSON(url, function(data,st,xhr){
+                $("#selector2").empty(); //quitamos el contenido del selector por si tuviera de antes
+                $("<option>").html("Escoge una opción").val("none").appendTo("#selector2"); //ponemos la opción 0
+                $.each(data.results,function(i, objeto){
+                  //console.log(objeto);
+                  if (objeto.title){
+                    $("<option>").html(objeto.title).val(i).appendTo("#selector2");
+                  }else{
+                    $("<option>").html(objeto.name).val(i).appendTo("#selector2");
+                  }
+                });
+              });
+            }
+          });
+
+          //El objeto siesweb es una expresión regular que será true si el valor que evaluemos empieza por https://.
+          //Evaluamos un valor con  siesweb.test(valor)
+          var siesweb= new RegExp("https://","i");
+
+          $("#selector2").change(function(){
+            $("#resultado").empty();
+            var escogido = $("#selector2").val();
+            if (escogido != "none"){
+              $.getJSON(url, function(data,st,xhr){
+                var objeto = data.results[escogido];
+                console.log(objeto);
+                $.each(objeto,function(i, info){
+                  console.log(info);
+                  if (!siesweb.test(info) && typeof(info) == "string"){
+                    $("<p>").html(i + " :" + info).appendTo("#resultado");
+                  }
+                });
+              });
+            }
+          });
+        });
+    </script>
+  </head>
+  <body>
+    <h1>Wiki Star Wars</h1>
+    <div class="contenedor">
+      <div>
+        <select id="selector1">
+          <option value="0">Escoge una categoría</option>
+          <option value="people">Personas</option>
+          <option value="planets">Planetas</option>
+          <option value="starships">Naves</option>
+          <option value="films">Películas</option>
+          <option value="species">Especies</option>
+          <option value="vehicles">Vehículos</option>
+        </select>
+      </div>
+      <div>
+        <select id="selector2">
+          <option value="none">Escoge una opción</option>
+        </select>
+      </div>
+      <div id="resultado"></div>
+    </div>
+  </body>
+</html>
