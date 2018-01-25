@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 2</title>
+<style type="text/css">
+	div{
+		width: 20%;
+		float:left;
+	}
+	button{
+		visibility: hidden;
+	}
+	img{
+		width: 200px;
+	}
+</style>
+<script type="text/javascript">
+	//Creamos el objeto xhr
+	var xhr = new XMLHttpRequest();
+	onload = function(){
+		//creamos las variables artículo y modelo
+		var articulo, modelo;
+
+		//controlamos el evento change de selector1
+		selector1.onchange = function(){
+			articulo = selector1.value;
+			modelo = selector2.value;
+			if (articulo != 0 && modelo != 0){
+				xhr.onreadystatechange = montarResultado;
+
+				//montamos la url:
+				var url = "escogeArticuloJSON.php?";
+				url += "articulo=" + articulo;
+				url += "&modelo=" + modelo;
+
+				xhr.open("GET",url, true);
+				xhr.send();
+			}else{
+				//vaciamos el contenido por si han quitado las opciones
+				foto.src = "";
+				foto.alt = "";
+				precio.innerHTML = "";
+				
+				//ocultamos el botón
+				document.querySelector("button").style.visibility = "hidden";
+			}
+		}
+
+		//controlamos el evento change de selector2
+		//es copia del anterior pero para el 2
+		selector2.onchange = function(){
+			articulo = selector1.value;
+			modelo = selector2.value;
+			if (articulo != 0 && modelo != 0){
+				xhr.onreadystatechange = montarResultado;
+
+				//montamos la url:
+				var url = "escogeArticuloJSON.php?";
+				url += "articulo=" + articulo;
+				url += "&modelo=" + modelo;
+
+				xhr.open("GET",url, true);
+				xhr.send();
+			}else{
+				//vaciamos el contenido por si han quitado las opciones
+				foto.src = "";
+				foto.alt = "";
+				precio.innerHTML = "";
+
+				//ocultamos el botón
+				document.querySelector("button").style.visibility = "hidden";
+			}
+		}
+
+		function montarResultado(){
+			if (xhr.readyState == 4 && xhr.status == 200){
+				//convertimos el JSON en JS:
+				var objJS = JSON.parse(xhr.responseText);
+
+				//Asignamos los valores
+				foto.src = objJS.foto;
+				foto.alt = objJS.modelo;
+				precio.innerHTML = objJS.pvp;
+
+				//Mostramos el botón de Comprar
+				document.querySelector("button").style.visibility = "visible";
+			}else if (xhr.readyState == 4) {
+				//si estamos aquí es que ha habido un error
+				alert(xhr.statusText);
+			}
+		}
+
+	}
+</script>
+</head>
+<body>
+<h1>Moda Hombre</h1>
+<div>
+<select id="selector1">
+	<option value=0>Escoge una prenda</option>
+	<option value="pantalon">Pantalón</option>
+	<option value="camisa">Camisa</option>
+	<option value="camiseta">Camiseta</option>
+</select>
+</div>
+<div>
+<select id="selector2">
+	<option value=0>Escoge un modelo</option>
+	<option value="liso">Liso</option>
+	<option value="estampado">Estampado</option>
+</select>
+</div>
+<div id="resultados">
+	<img src="" alt="" id="foto">
+	<p id="precio"></p>
+	<button>Comprar</button>
+</div>
+
+</body>
+</html>

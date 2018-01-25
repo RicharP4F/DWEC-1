@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 2</title>
+<style type="text/css">
+	div{
+		width: 20%;
+		float:left;
+	}
+	button{
+		visibility: hidden;
+	}
+	img{
+		width: 200px;
+	}
+</style>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+ $(document).ready(function(){
+	 //creamos las variables artículo y modelo
+	 var articulo, modelo;
+
+	 //gestionamos el evento del selector 1
+	 $("#selector1").change(function(){
+		 articulo = $("#selector1").val();
+		 modelo = $("#selector2").val();
+		 if (articulo != 0 && modelo != 0){
+			 //montamos la url:
+			 var url = "escogeArticuloJSON.php?";
+			 url += "articulo=" + articulo;
+			 url += "&modelo=" + modelo;
+
+			 $.getJSON(url, montarResultado);
+		 }else{
+			 //vaciamos el contenido por si han quitado las opciones
+			 $("img").attr("src","");
+			 $("img").attr("alt","");
+			 $("p").html("");
+
+			 //ocultamos el botón
+			 $("button").css('visibility', 'hidden');
+		 }
+	 });
+
+	 //gestionamos el evento del selector 2
+	 $("#selector2").change(function(){
+	 	articulo = $("#selector1").val();
+	 	modelo = $("#selector2").val();
+	 	if (articulo != 0 && modelo != 0){
+	 		//montamos la url:
+	 		var url = "escogeArticuloJSON.php?";
+	 		url += "articulo=" + articulo;
+	 		url += "&modelo=" + modelo;
+
+	 		$.getJSON(url, montarResultado);
+	 	}else{
+	 		//vaciamos el contenido por si han quitado las opciones
+	 		$("img").attr("src","");
+	 		$("img").attr("alt","");
+	 		$("p").html("");
+
+	 		//ocultamos el botón
+	 		$("button").css('visibility', 'hidden');
+	 	}
+	 });
+
+	 //montarResultado debe tener los parámetros que espera getJSON
+	 function montarResultado(data, st, xhr){
+		 if (st == "success"){
+			 console.log(data);
+			 $("img").attr("src",data.foto);
+			 $("img").attr("alt",data.modelo);
+			 $("p").html(data.pvp);
+
+			 //mostramos el botón
+			 $("button").css('visibility', 'visible');
+		 }else{
+			 alert(xhr.statusText);
+		 }
+	 }
+
+	});
+</script>
+</head>
+<body>
+<h1>Moda Hombre</h1>
+<div>
+<select id="selector1">
+	<option value=0>Escoge una prenda</option>
+	<option value="pantalon">Pantalón</option>
+	<option value="camisa">Camisa</option>
+	<option value="camiseta">Camiseta</option>
+</select>
+</div>
+<div>
+<select id="selector2">
+	<option value=0>Escoge un modelo</option>
+	<option value="liso">Liso</option>
+	<option value="estampado">Estampado</option>
+</select>
+</div>
+<div id="resultados">
+	<img src="" alt="" id="foto">
+	<p id="precio"></p>
+	<button>Comprar</button>
+</div>
+
+</body>
+</html>
