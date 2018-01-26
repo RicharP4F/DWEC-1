@@ -22,34 +22,12 @@
 		//creamos las variables artículo y modelo
 		var articulo, modelo;
 
-		//controlamos el evento change de selector1
-		selector1.onchange = function(){
-			articulo = selector1.value;
-			modelo = selector2.value;
-			if (articulo != 0 && modelo != 0){
-				xhr.onreadystatechange = montarResultado;
+		//asignamos la función al evento change de los selectores
+		selector1.onchange = pedirDatos;
+		selector2.onchange = pedirDatos;
 
-				//montamos la url:
-				var url = "escogeArticuloJSON.php?";
-				url += "articulo=" + articulo;
-				url += "&modelo=" + modelo;
-
-				xhr.open("GET",url, true);
-				xhr.send();
-			}else{
-				//vaciamos el contenido por si han quitado las opciones
-				foto.src = "";
-				foto.alt = "";
-				precio.innerHTML = "";
-				
-				//ocultamos el botón
-				document.querySelector("button").style.visibility = "hidden";
-			}
-		}
-
-		//controlamos el evento change de selector2
-		//es copia del anterior pero para el 2
-		selector2.onchange = function(){
+		//pedirDatos es la función que hace la llamada Ajax
+		function pedirDatos(){
 			articulo = selector1.value;
 			modelo = selector2.value;
 			if (articulo != 0 && modelo != 0){

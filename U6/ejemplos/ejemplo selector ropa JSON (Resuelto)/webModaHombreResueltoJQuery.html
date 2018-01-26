@@ -22,7 +22,7 @@
 	 var articulo, modelo;
 
 	 //gestionamos el evento del selector 1
-	 $("#selector1").change(function(){
+	 $("select").change(function(){
 		 articulo = $("#selector1").val();
 		 modelo = $("#selector2").val();
 		 if (articulo != 0 && modelo != 0){
@@ -43,27 +43,27 @@
 		 }
 	 });
 
-	 //gestionamos el evento del selector 2
-	 $("#selector2").change(function(){
-	 	articulo = $("#selector1").val();
-	 	modelo = $("#selector2").val();
-	 	if (articulo != 0 && modelo != 0){
-	 		//montamos la url:
-	 		var url = "escogeArticuloJSON.php?";
-	 		url += "articulo=" + articulo;
-	 		url += "&modelo=" + modelo;
-
-	 		$.getJSON(url, montarResultado);
-	 	}else{
-	 		//vaciamos el contenido por si han quitado las opciones
-	 		$("img").attr("src","");
-	 		$("img").attr("alt","");
-	 		$("p").html("");
-
-	 		//ocultamos el botón
-	 		$("button").css('visibility', 'hidden');
-	 	}
-	 });
+	 // //gestionamos el evento del selector 2
+	 // $("#selector2").change(function(){
+	 // 	articulo = $("#selector1").val();
+	 // 	modelo = $("#selector2").val();
+	 // 	if (articulo != 0 && modelo != 0){
+	 // 		//montamos la url:
+	 // 		var url = "escogeArticuloJSON.php?";
+	 // 		url += "articulo=" + articulo;
+	 // 		url += "&modelo=" + modelo;
+   //
+	 // 		$.getJSON(url, montarResultado);
+	 // 	}else{
+	 // 		//vaciamos el contenido por si han quitado las opciones
+	 // 		$("img").attr("src","");
+	 // 		$("img").attr("alt","");
+	 // 		$("p").html("");
+   //
+	 // 		//ocultamos el botón
+	 // 		$("button").css('visibility', 'hidden');
+	 // 	}
+	 // });
 
 	 //montarResultado debe tener los parámetros que espera getJSON
 	 function montarResultado(data, st, xhr){
