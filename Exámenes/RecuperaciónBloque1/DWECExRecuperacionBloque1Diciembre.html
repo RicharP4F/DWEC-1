@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      //Creamos un constructor
+      function Pelicula(titulo, valoracionMedia, genero){
+        this.titulo = titulo;
+        this.valoracionMedia = valoracionMedia.toFixed(2);
+        this.genero = genero;
+      }
+
+      //Creamos instancias (objetos con datos concretos) a partir del constructor
+      //Le paso 4 dígitos para comprobar que finalmente se queda sólo con 2
+      peli1 = new Pelicula("La chica del tren", 4.7865, "suspense");
+      peli2 = new Pelicula("El señor de los anillos", 8.1234, "fantástico");
+      peli3 = new Pelicula("Rec 2", 3.5432, "terror");
+
+      //Creamos el array
+      var filmoteca = new Array(peli1, peli2, peli3);
+
+      //Modificamos el constructor del objeto Película
+      Pelicula.prototype.serieB = false;
+      Pelicula.prototype.clasificar = function(){
+        if (this.genero == "terror" && this.valoracionMedia < 5){
+          this.serieB = true; //IMPORTANTE: en los métodos si hago referencia a atributos del propio objeto tengo que usar this!
+        }
+      }
+
+      console.log(peli1.serieB); //lo muestro solo para que veáis que lo incluye
+
+      //Aplicamos el método clasificar a todos.
+      filmoteca.forEach(function(n){
+        n.clasificar();
+        console.log(n.titulo + " ¿es de serie B? " + n.serieB); //lo muestro únicamente para que veáis que lo aplica
+      });
+
+
+      //Aplicamos sort en el array para ordenar los elementos
+      function ordenaVal(n1, n2){
+        return n1.valoracionMedia - n2.valoracionMedia
+      }
+
+      filmoteca.sort(ordenaVal);
+      console.log(filmoteca); //filmoteca ordenada por valoraciones
+
+    </script>
+  </head>
+  <body>
+    <h1>Solución recuperación Bloque 1 (Diciembre-2017)</h1>
+    <h2>Para ver el resultado, abre la consola</h2>
+  </body>
+</html>

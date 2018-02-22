@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      //Creamos un constructor
+      function Usuario(email, cuenta, mediaAccesosMes){
+        this.email = email;
+        this.cuenta = cuenta;
+        this.mediaAccesosMes = mediaAccesosMes;
+        this.recuerdaCuenta = function(){
+          var emailConsulta = prompt("Para recordar su cuenta, introduzca su email");
+          if (emailConsulta === this.email){ //sin la comprobación del if, el ejercicio también estaría bien
+              var hoy = new Date();
+              alert("Su cuenta es " + this.cuenta + " (" + hoy.toLocaleString() + ")");
+          }
+        }
+      }
+
+      //Creamos instancias (objetos con datos concretos) a partir del constructor
+      var us1 = new Usuario("agomez@gmail.com", "agomez", 3.5);
+      var us2 = new Usuario("fperez@gmail.com", "fperez", 234);
+      var us3 = new Usuario("sruiz@hotmail.com", "susanaruiz", 12.36);
+
+      //Creamos el array
+      var listado = new Array(us1, us2, us3);
+      //us1.recuerdaCuenta(); //probamos cómo funciona el método introduciendo el email
+
+      //Modificamos el constructor del objeto Película
+      Usuario.prototype.password = 1234;
+      console.log(us2.password); //lo muestro solo para que veáis que lo incluye
+
+      Usuario.prototype.generaPass = function(){
+        var password = this.email.split('@')[0];
+        this.password = password + Math.floor(Math.random()*10);
+        console.log("El password generado es: " + this.password);
+      }
+
+      //Con la función password aplicamos el método a todos.
+      function password(listado){
+        listado.forEach(function(n){
+          n.generaPass();
+        });
+      }
+
+      //Ejecuto la función
+      password(listado);
+
+      //Aplicamos sort en el array para ordenar los elementos
+      function ordenaVal(n1, n2){
+        return n2.mediaAccesosMes - n1.mediaAccesosMes
+      }
+      function ranking(){
+        listado.sort(ordenaVal);
+        console.log(listado); //mostramos el listado ordenado por accesos
+      }
+
+    </script>
+  </head>
+  <body>
+    <h1>Solución recuperación Bloque 1 (Enero-2018)</h1>
+    <h2>Para ver el resultado, abre la consola</h2>
+  </body>
+</html>
